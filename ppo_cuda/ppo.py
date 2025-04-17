@@ -15,6 +15,8 @@ import time
 
 SelfPPO = TypeVar("SelfPPO", bound="PPO")
 
+print("CUDA")
+
 
 class PPO(OnPolicyAlgorithm):
     """
@@ -135,6 +137,8 @@ class PPO(OnPolicyAlgorithm):
                 spaces.MultiBinary,
             ),
         )
+
+        th.set_num_threads(64)
 
         # Sanity check, otherwise it will lead to noisy gradient and NaN
         # because of the advantage normalization
