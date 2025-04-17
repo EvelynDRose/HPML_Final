@@ -1,7 +1,7 @@
 import gymnasium as gym
 from common.env_util import make_vec_dmcontrol_env
 #from ppo_reward.ppo import PPO
-from ppo.ppo import PPO
+from ppo_cuda.ppo import PPO
 import dmc2gym
 import matplotlib.pyplot as plt
 import imageio
@@ -65,6 +65,6 @@ for seed in seeds:
     env= VecNormalize(env, norm_reward=False)
 
     model = PPO(policy="MlpPolicy", env=env, verbose=1, tensorboard_log="./tests/" + env_name + "_" + task_name + "_ppo_seed_" +str(seed) + "/")
-    model.learn(total_timesteps=1000000)
+    model.learn(total_timesteps=160000)
 
     del model
